@@ -3,6 +3,7 @@ import { Form, Input, Button } from 'antd';
 
 const InputTodo = ({ inputText, setInputText, AddTodo }) => {
 
+  // 데이터가 복잡할경우 문제가 될 수 있음
   const onChangeInput = (e) => {
     const { value, name } = e.target;
     setInputText({ ...inputText, [name]: value });
@@ -15,7 +16,7 @@ const InputTodo = ({ inputText, setInputText, AddTodo }) => {
           name="name"
           onChange={onChangeInput}
           value={inputText.name}
-          required
+        // required
         />
       </Form.Item>
       <Form.Item label="나이">
@@ -24,7 +25,7 @@ const InputTodo = ({ inputText, setInputText, AddTodo }) => {
           onChange={onChangeInput}
           type="number"
           value={inputText.age}
-          required
+        // required
         />
       </Form.Item>
       <Form.Item label="주소">
@@ -32,7 +33,7 @@ const InputTodo = ({ inputText, setInputText, AddTodo }) => {
           name="addr"
           onChange={onChangeInput}
           value={inputText.addr}
-          required
+        // required
         />
       </Form.Item>
       <Form.Item>

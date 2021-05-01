@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'antd';
+import { Table, Button } from 'antd';
 import 'antd/dist/antd.css';
 
 const columns = [
@@ -23,21 +23,22 @@ const columns = [
   }
 ]
 
-// antd code
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-  },
-  getCheckboxProps: (record) => ({
-    disabled: record.name === 'Disabled User',
-    // Column configuration not to be checked
-    name: record.name,
-  }),
-};
-
-const OutputTodo = ({ data, DelTodo }) => {
+const OutputTodo = ({ data, setCheckedItem, DelTodo }) => {
   console.log('OutputTodo Component');
   console.log(data.length);
+
+  // antd code
+  const rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+      setCheckedItem(selectedRowKeys);
+    },
+    getCheckboxProps: (record) => ({
+      disabled: record.name === 'Disabled User',
+      // Column configuration not to be checked
+      name: record.name,
+    }),
+  };
 
   return (
     <div style={{ border: "1px solid skyblue", margin: '30px 20px 20px 20px' }}>
@@ -48,7 +49,12 @@ const OutputTodo = ({ data, DelTodo }) => {
         dataSource={data}
         pagination={false}
       />
-      <button onClick={DelTodo}>삭제</button>
+      <Button
+        type="primary"
+        htmlType="button"
+        style={{ margin: '20px 20px 20px 20px' }}
+        onClick={DelTodo}
+      >삭제</Button>
     </div>
   )
 }
